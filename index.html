@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>منيو الكافتيريا</title>
+<meta name="google" content="notranslate">
+<title>منيو الارجوانة</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Reem+Kufi:wght@600;700&display=swap" rel="stylesheet">
@@ -13,7 +14,7 @@
   html{scroll-behavior:smooth}
   body{font-family:"IBM Plex Sans Arabic",Tahoma,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;font-size:17px}
   header{background:var(--ink);color:#fff;padding:34px 20px 26px;text-align:center}
-  header h1{font-family:"Reem Kufi",serif;font-size:2.6rem;line-height:1.2}
+  header h1{font-family:"Reem Kufi",serif;font-size:2.8rem;line-height:1.2}
   header p{color:#B9D0C9;margin-top:6px;font-size:.95rem}
   nav{position:sticky;top:0;z-index:5;background:var(--paper);display:flex;gap:8px;overflow-x:auto;padding:12px 16px;border-bottom:1px solid var(--line);scrollbar-width:none}
   nav::-webkit-scrollbar{display:none}
@@ -24,17 +25,20 @@
   section h2{font-family:"Reem Kufi",serif;font-size:1.7rem;margin-bottom:6px}
   .item{display:flex;align-items:baseline;gap:10px;padding:11px 0}
   .name{font-weight:600}
-  .desc{display:block;color:var(--muted);font-size:.85rem;font-weight:400;line-height:1.5}
   .dots{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-4px);min-width:16px}
-  .price{font-weight:600;font-size:1.1rem;white-space:nowrap;color:var(--ink);background:var(--saffron);padding:1px 10px;border-radius:6px}
+  .price{font-weight:600;font-size:1.1rem;white-space:nowrap;background:var(--saffron);padding:1px 10px;border-radius:6px}
   .price small{font-weight:500;font-size:.75rem;margin-inline-start:2px}
+  .item.sized{flex-direction:column;align-items:flex-start;gap:4px;border-bottom:1px dotted var(--line)}
+  .sizes{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{display:inline-flex;flex-direction:column;align-items:center;background:var(--saffron);border-radius:8px;padding:2px 14px;font-weight:600;line-height:1.5}
+  .chip em{font-style:normal;font-weight:500;font-size:.72rem}
   footer{text-align:center;color:var(--muted);font-size:.85rem;padding:0 20px 40px}
 </style>
 </head>
 <body>
 
 <header>
-  <h1>اسم الكافتيريا</h1>
+  <h1>الارجوانة</h1>
   <p>أهلاً بيك .. اختار الداير</p>
 </header>
 
@@ -45,33 +49,61 @@
 
 <script>
 const CURRENCY = "ج";
-
 const MENU = [
-  { title: "مشروبات ساخنة", items: [
-    { n: "شاي", p: 1000 },
-    { n: "شاي بالحليب", p: 1500 },
-    { n: "قهوة", p: 1500, d: "قهوة سودانية بالجنزبيل" },
-    { n: "جبنة", p: 2000 },
-    { n: "نسكافيه", p: 2500 },
+  { title: "بيتزا", items: [
+    { n: "بيتزا هوت دوق", s: [["صغيرة",20000],["وسط",27000],["كبيرة",30000]] },
+    { n: "بيتزا فراخ", s: [["صغيرة",23000],["وسط",27000],["كبيرة",30000]] },
+    { n: "بيتزا مشكلة", s: [["صغيرة",25000],["وسط",28000],["كبيرة",35000]] },
   ]},
-  { title: "مشروبات باردة", items: [
-    { n: "عصير ليمون", p: 2500 },
-    { n: "عصير مانجو", p: 3500 },
-    { n: "عصير جوافة", p: 3500 },
-    { n: "كركدي", p: 2000 },
-    { n: "مياه معدنية", p: 1000 },
+  { title: "فطائر شامية", items: [
+    { n: "فطيرة شامية فراخ", p: 14000 },
+    { n: "فطيرة شامية هوت دوق", p: 14000 },
+    { n: "فطيرة شامية مشكلة", p: 17000 },
+    { n: "فطيرة ارجوانة", p: 17000 },
+    { n: "فطيرة شامية اندومي", p: 10000 },
   ]},
-  { title: "وجبات", items: [
-    { n: "فول", p: 4000, d: "بالزيت والجبنة" },
-    { n: "فطيرة", p: 3000 },
-    { n: "ساندوتش جبنة", p: 3500 },
-    { n: "ساندوتش فراخ", p: 5500 },
-    { n: "برجر", p: 7000, d: "مع بطاطس" },
+  { title: "اندومي", items: [
+    { n: "اندومي كلاسك", p: 5000 },
+    { n: "اندومي بالجبنة", p: 7000 },
+    { n: "اندومي هوت دوق", p: 7000 },
+    { n: "اندومي بالزرة الشامية", p: 7000 },
+    { n: "اندومي توكس", p: 8000 },
   ]},
-  { title: "حلويات", items: [
-    { n: "كيك", p: 2500 },
-    { n: "آيس كريم", p: 2000 },
-    { n: "بسكويت", p: 1000 },
+  { title: "شاورما", items: [
+    { n: "شاورما عيش", p: 10000 },
+    { n: "شاورما فطيرة", p: 12000 },
+    { n: "شاورما جامبو", p: 16000 },
+    { n: "شاورما عربي", p: 17000 },
+    { n: "شاورما طلب", p: 18000 },
+  ]},
+  { title: "كرسبي", items: [
+    { n: "كرسبي عيش", p: 11000 },
+    { n: "كرسبي فطيرة", p: 13000 },
+    { n: "كرسبي جامبو", p: 16000 },
+    { n: "كرسبي جبنة", p: 16000 },
+    { n: "كرسبي طلب", p: 18000 },
+  ]},
+  { title: "برقر", items: [
+    { n: "برقر عادي", p: 8000 },
+    { n: "برقر بالجبنة", p: 9000 },
+    { n: "برقر جامبو", p: 10000 },
+  ]},
+  { title: "ساندويتشات", items: [
+    { n: "بيض", p: 4000 },
+    { n: "طعمية عيش", p: 4000 },
+    { n: "طعمية فطيرة", p: 5000 },
+    { n: "شيبس عيش", p: 6000 },
+    { n: "شيبس فطيرة", p: 7000 },
+    { n: "هوت دوق", p: 7000 },
+    { n: "زيادة عيش", p: 1000 },
+  ]},
+  { title: "عصائر", items: [
+    { n: "عصير برتقال", p: 4000 },
+    { n: "عصير موز", p: 4000 },
+    { n: "عصير اناناس", p: 8000 },
+    { n: "عصير فراولة", p: 8000 },
+    { n: "عصير منقة", p: 8000 },
+    { n: "عصير مشكل", p: 8000 },
   ]},
 ];
 
@@ -82,15 +114,15 @@ const fmt = n => n.toLocaleString("en-US");
 MENU.forEach((cat, i) => {
   const id = "cat" + i;
   tabs.insertAdjacentHTML("beforeend", `<a href="#${id}">${cat.title}</a>`);
-  const rows = cat.items.map(it => `
-    <div class="item">
-      <div class="name">${it.n}${it.d ? `<span class="desc">${it.d}</span>` : ""}</div>
-      <div class="dots"></div>
-      <div class="price">${fmt(it.p)}<small>${CURRENCY}</small></div>
-    </div>`).join("");
+  const rows = cat.items.map(it => {
+    if (it.s) {
+      const chips = it.s.map(([l, p]) => `<span class="chip"><em>${l}</em>${fmt(p)}</span>`).join("");
+      return `<div class="item sized"><div class="name">${it.n}</div><div class="sizes">${chips}</div></div>`;
+    }
+    return `<div class="item"><div class="name">${it.n}</div><div class="dots"></div><div class="price">${fmt(it.p)}<small>${CURRENCY}</small></div></div>`;
+  }).join("");
   menu.insertAdjacentHTML("beforeend", `<section id="${id}"><h2>${cat.title}</h2>${rows}</section>`);
 });
 </script>
 </body>
 </html>
-
